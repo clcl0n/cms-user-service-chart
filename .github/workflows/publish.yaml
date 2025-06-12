@@ -1,0 +1,12 @@
+name: Build and Publish Helm Chart
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  publish_nuget:
+    uses: clcl0n/cms-workflows/.github/workflows/publish-chart.yaml@main
+    with:
+      chart_version: ${{ github.ref_name }}
