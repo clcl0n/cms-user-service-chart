@@ -1,0 +1,124 @@
+{
+    "title": "Chart Values Schema",
+    "type": "object",
+    "properties": {
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace where the service will be deployed."
+                }
+            },
+            "required": [
+                "namespace"
+            ]
+        },
+        "spec": {
+            "type": "object",
+            "properties": {
+                "replicas": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1,
+                    "description": "Number of replicas for the service."
+                },
+                "spec": {
+                    "type": "object",
+                    "properties": {
+                        "spec": {
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "type": "string",
+                                    "description": "Docker image for the service."
+                                }
+                            },
+                            "required": [
+                                "image"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "spec"
+                    ]
+                }
+            },
+            "required": [
+                "replicas"
+            ]
+        },
+        "configuration": {
+            "type": "object",
+            "properties": {
+                "connectionStrings": {
+                    "type": "object",
+                    "properties": {
+                        "postgres": {
+                            "type": "string",
+                            "description": "Postgres connection string."
+                        }
+                    },
+                    "required": [
+                        "postgres"
+                    ]
+                },
+                "messagingBroker": {
+                    "type": "object",
+                    "properties": {
+                        "rabbitMq": {
+                            "type": "object",
+                            "properties": {
+                                "hostName": {
+                                    "type": "string",
+                                    "description": "RabbitMQ host."
+                                },
+                                "port": {
+                                    "type": "integer",
+                                    "description": "RabbitMQ port."
+                                },
+                                "userName": {
+                                    "type": "string",
+                                    "description": "RabbitMQ username."
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "RabbitMQ password."
+                                },
+                                "virtualHost": {
+                                    "type": "string",
+                                    "description": "RabbitMQ virtual host."
+                                },
+                                "ssl": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean",
+                                            "description": "Enable SSL for RabbitMQ connection."
+                                        }
+                                    },
+                                    "required": [
+                                        "enabled"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "hostName",
+                                "port",
+                                "userName",
+                                "password",
+                                "virtualHost"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "rabbitMq"
+                    ]
+                }
+            },
+            "required": [
+                "connectionStrings"
+            ]
+        }
+    }
+}

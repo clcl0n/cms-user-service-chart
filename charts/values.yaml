@@ -1,0 +1,20 @@
+metadata:
+  namespace: cms
+spec:
+  replicas: 1
+  template:
+    spec:
+      image: ghcr.io/clcl0n/cms-user-service:latest
+
+configuration:
+  connectionStrings:
+    postgres: postgresql://postgres:postgres@localhost:5432/cms_user_service?sslmode=disable
+  messagingBroker:
+    rabbitMq:
+      hostName: localhost
+      port: 5672
+      userName: rabbitmq
+      password: rabbitmq
+      virtualHost: /
+      ssl:
+        enabled: false

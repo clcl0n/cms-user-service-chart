@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: {{ .Release.Name }}
+    namespace: {{ .Values.metadata.namespace }}
+    labels:
+        app: {{ .Release.Name }}
+spec:
+    replicas: {{ .Values.spec.replicas }}
+    selector:
+        matchLabels:
+            app: {{ .Release.Name }}
+    template:
+        metadata:
+            labels:
+                app: {{ .Release.Name }}
+        spec:
+            containers:
+                - name: {{ .Release.Name }}
+                  image: {{ .Values.spec.template.spec.image }}
+                  ports:
+                    - containerPort: 8080
+                  imagePullPolicy: IfNotPresent
+                  volumeMounts:
+                  - mountPath: /App/appsettings.Production.json
+                    name: configuration
+                    subPath: appsettings.Production.json
+            volumes:
+                - name: configuration
+                  configMap:
+                    name: {{ .Release.Name }}
+
+

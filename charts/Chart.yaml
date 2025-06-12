@@ -1,0 +1,8 @@
+apiVersion: v2
+description: Cms User Service Helm Chart
+name: cms-user-service-chart
+version: ${CHART_VERSION}
+keywords:
+  - cms
+  - user
+  - service
