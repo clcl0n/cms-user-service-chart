@@ -25,6 +25,21 @@ spec:
                   - mountPath: /App/appsettings.Production.json
                     name: configuration
                     subPath: appsettings.Production.json
+                  env:
+                    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                      value: {{ .Values.configuration.otel.exporterOtlpEndpoint }}
+                    - name: OTEL_EXPORTER_OTLP_PROTOCOL
+                      value: otlp
+                    - name: OTEL_SERVICE_NAME
+                      value: {{ .Release.Name }}
+                    - name: OTEL_RESOURCE_ATTRIBUTES
+                      value: deployment.environment={{ .Values.configuration.environment }}
+                    - name: OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION
+                      value: 'true'
+                    - name: OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION
+                      value: 'true'
+                    - name: OTEL_DOTNET_EXPERIMENTAL_ASPNET_DISABLE_URL_QUERY_REDACTION
+                      value: 'true'
             volumes:
                 - name: configuration
                   configMap:

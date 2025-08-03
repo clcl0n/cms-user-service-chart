@@ -51,6 +51,22 @@
         "configuration": {
             "type": "object",
             "properties": {
+                "environment": {
+                    "type": "string",
+                    "description": "Deployment environment."
+                },
+                "otel": {
+                    "type": "object",
+                    "properties": {
+                        "exporterOtlpEndpoint": {
+                            "type": "string",
+                            "description": "Otel exporter endpoint for telemetry data."
+                        }
+                    },
+                    "required": [
+                        "exporterOtlpEndpoint"
+                    ]
+                },
                 "connectionStrings": {
                     "type": "object",
                     "properties": {

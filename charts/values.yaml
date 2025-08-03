@@ -7,6 +7,9 @@ spec:
       image: ghcr.io/clcl0n/cms-user-service:latest
 
 configuration:
+  environment: staging
+  otel:
+    exporterOtlpEndpoint: http://otel-collector-opentelemetry-collector:4317
   connectionStrings:
     postgres: postgresql://postgres:postgres@localhost:5432/cms_user_service?sslmode=disable
   messagingBroker:
